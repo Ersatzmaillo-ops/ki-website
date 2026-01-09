@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemini Fragefeld</title>
+  <style>
+    .main-content {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        max-width: 700px;
+        margin: 0 auto;
+        
+    }
+    body {
+    background-image: url('https://png.pngtree.com/background/20230416/original/pngtree-website-technology-line-dark-background-picture-image_2443641.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    }
+    .input-group { 
+        display: flex;
+        align-items: center;
+    }
+    button {
+        display: flex;
+        border-radius: 20px;
+        
+    }
+    
+        
+    
+    body { 
+        font-family: Arial, sans-serif; 
+        padding: 40px; justify-content: 
+        center; align-items: center; 
+        display: flex; }
+    input { 
+       width: 430px; 
+        padding: 10px; 
+        font-size: 16px; 
+        border-radius: 20px;}
+    button { 
+        padding: 10px 16px; 
+        font-size: 16px; 
+        margin-left: 8px; 
+        align-items: center; }
+    #answer { 
+        margin-top: 20px; 
+        padding: 12px; 
+        border: 1px solid #ccc; 
+        width: 520px; 
+        white-space: pre-wrap;
+        margin-left: auto;
+        margin-right: auto;
+    }
+   h2 {
+    color: white;
+    }
+    #answer {
+        color: rgb(59, 59, 59);}
+        #answer { background-color: rgba(255, 255, 255, 0.5);}
+    #answer {
+        border-radius: 20px;
+    }
+   
+  </style>
+</head>
+<body>
+
+  
+<div class="main-content">
+    <h2>Frag den schlauen KI-Assistenten</h2>
+   
+    <div class="input-group">
+        <input id="question" type="text" placeholder="Schreibe deine Frage..." />
+        <button id="send">Senden</button>
+</div>
+  
+
+  <div id="answer">Antwort erscheint hier...</div>
+</div>
+<script src="script.js"></script> 
+</body>
+</html>
