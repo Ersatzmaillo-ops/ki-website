@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server läuft auf Port " + PORT));
+
 
 
 const express = require("express");
@@ -59,7 +59,5 @@ app.post("/api/ask", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+app.listen(PORT, () => console.log("Server läuft auf Port " + PORT));
 
-app.listen(3000, () => {
-  console.log("Server läuft auf http://localhost:3000");
-});
