@@ -1,42 +1,72 @@
 const input = document.getElementById("question");
-    const button = document.getElementById("send");
-    const answerDiv = document.getElementById("answer");
+const button = document.getElementById("send");
+const chat = document.getElementById("chat");
 
-    async function askAI() {
-      const question = input.value.trim();
-      if (!question) return;
+let messages = [];
 
-      answerDiv.textContent = "Lade Antwort...";
+function renderChat() {
+  chat.innerHTML = "";
 
-      const res = await fetch("/api/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question })
-      });
+  for (const msg of messages) {
+    const row = document.createElement("div");
+    row.className = `msg ${msg.role}`;
 
-      const data = await res.json();
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = msg.text;
 
-      if (!res.ok) {
-        answerDiv.textContent = "Fehler:\n" + JSON.stringify(data, null, 2);
-        return;
-      }
+    row.appendChild(bubble);
+    chat.appendChild(row);
+  }
 
-      answerDiv.textContent = data.answer;
-      
-    }
-    button.addEventListener("click", askAI);
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter"){
-      askAI();
-      input.value = "";
+  chat.scrollTop = chat.scrollHeight;
+}
 
-      } 
+function addMessage(role, text) {
+  messages.push({ role, text });
+  renderChat();
+}
+
+async function askAI() {
+  const question = input.value.trim();
+  if (!question) return;
+
+  addMessage("user", question);
+  input.value = "";
+  input.focus();
+
+  // Platzhalter
+  addMessage("assistant", "Lade Antwort...");
+  const placeholderIndex = messages.length - 1;
+
+  try {
+    const res = await fetch("/api/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question })
     });
 
-    input.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          input.value = "";
-          input.focus();
-        }
-      });
-  
+    const data = await res.json();
+
+    if (!res.ok) {
+      messages[placeholderIndex].text =
+        "Fehler:\n" + JSON.stringify(data, null, 2);
+      renderChat();
+      return;
+    }
+
+    messages[placeholderIndex].text = data.answer || "Keine Antwort erhalten.";
+    renderChat();
+  } catch (err) {
+    messages[placeholderIndex].text = "Fehler:\n" + err.message;
+    renderChat();
+  }
+}
+
+button.addEventListener("click", askAI);
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") askAI();
+});
+
+// Starttext optional
+addMessage("assistant", "Hallo! Stell mir eine Frage.");

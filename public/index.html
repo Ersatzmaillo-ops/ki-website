@@ -16,7 +16,7 @@
         
     }
     body {
-    background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20201026/pngtree-futuristic-shape-abstract-background-chemistry-technology-concept-for-website-image_438818.jpg');
+    background-image: url("https://media.istockphoto.com/id/1141277826/de/foto/sonnenuntergang-in-cabo-san-lucas.webp?s=1024x1024&w=is&k=20&c=X4h7r7JLuwSY1fZ-NunFdfIIbtxBUK-3iI5B9imaDT0=");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -60,13 +60,57 @@
    h2 {
     color: white;
     }
-    #answer {
-        color: rgb(59, 59, 59);}
-        #answer { background-color: rgba(255, 255, 255, 0.5);}
+   /* #answer {
+        color: rgb(59, 59, 59);
+    }
+        #answer {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
     #answer {
         border-radius: 20px;
     }
-   
+    #answer {
+        outline-width : 2px;
+       outline-color: rgb(59, 59, 59);
+       outline-style: solid;
+    }*/
+#chat {
+    margin-top: 20px; 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    width: 520px; 
+    white-space: pre-wrap;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    outline-width : 2px;
+    outline-color: rgb(59, 59, 59);
+    outline-style: solid;
+    color: rgb(59, 59, 59);
+}
+.msg {
+    display: flex;
+    margin: 10px 0;
+}
+.bubble {
+    max-width: 85%;
+    padding: 10px 12px;
+    border-radius: 16px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background-color: rgba(255, 255, 255, 0.85);
+    color:rgb(59, 59, 59);
+}
+.msg.user {
+    justify-content: flex-end;
+}
+.msg.user .bubble {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+.msg.assistant {
+    justify-content: flex-start;
+}
   </style>
 </head>
 <body>
@@ -81,7 +125,7 @@
 </div>
   
 
-  <div id="answer">Antwort erscheint hier...</div>
+  <div id="chat" aria-live="polite"></div>
 </div>
 <script src="script.js"></script> 
 </body>
